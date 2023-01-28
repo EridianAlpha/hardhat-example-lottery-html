@@ -2,9 +2,9 @@ import { useMoralis } from "react-moralis"
 import { useEffect } from "react"
 
 export default function ManualHeader() {
+    // useMoralis is a React "hook" that hooks into the React state and lifecycle features
     const { enableWeb3, account, isWeb3Enabled, Moralis, deactivateWeb3, isWeb3EnableLoading } =
         useMoralis()
-    // some button that connects us and changes connected to be true
 
     useEffect(() => {
         if (isWeb3Enabled) return
@@ -14,10 +14,12 @@ export default function ManualHeader() {
             }
         }
     }, [isWeb3Enabled])
-    // no dependecy array: run anytime something re-renders
-    // CAREFUL with this!! Because then you can get circular render
-    // blank dependency array, run once on load / rerender
-    // dependencies in the array, run anytime something in there changes
+    // No dependency array:
+    //   run anytime something re-renders
+    //   CAREFUL with this!! Because then you can get circular render
+    // Blank dependency array:
+    //   run once on load / rerender
+    //   dependencies in the array, run anytime something in there changes
 
     useEffect(() => {
         Moralis.onAccountChanged((account) => {
